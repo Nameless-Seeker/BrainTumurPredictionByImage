@@ -20,6 +20,14 @@ def PredictBrainTumour(image):
     prediction = model.predict(image_array)[0]
     return prediction
 
+@disease.get("/")
+def start():
+    return {"project" : "BrainTumourPredictionByImage"}
+
+@disease.get("/status")
+def status():
+    return {"status":"Up and running"}
+
 @disease.post("/BrainPrediction")
 async def Brain(file: UploadFile = File(...)):
     contents = await file.read()
